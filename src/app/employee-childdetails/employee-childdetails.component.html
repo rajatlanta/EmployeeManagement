@@ -1,0 +1,43 @@
+<form novalidate [formGroup]="form" *ngIf="form" (ngSubmit)="saveEmployee()">
+            <div>
+                <input type="text" name="" formControlName="id" style="visibility: hidden;" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="employeename">
+                    Employee Name:
+                </label>
+                <input type="text" name="" formControlName="name" class="form-control">
+                <div *ngIf="form.get('name').touched && form.get('name').errors?.['required']" class="alert alert-danger">
+                    Employee Name is Required
+                </div>
+            </div>
+       
+            <div class="form-group">
+                <label for="department">
+                    Department:
+                </label>
+                <select  class="form-control" formControlName="department">
+                    <option  *ngFor="let department of alldepartments" [value]="department.departmentId">{{ department.departmentName }}</option>
+                </select> 
+            </div>
+
+            <div class="form-group">
+                <label for="salary">
+                    Salary:
+                </label>
+                <input type="text" name="" formControlName="salary" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="phonenumber">
+                    Phone Number:
+                </label>
+                <input type="text" name="" formControlName="phoneNumber" class="form-control">
+            </div>
+    <br>
+    <input type="submit" [disabled]="form.invalid" name="Save" value="Save" class="btn btn-primary"> &nbsp;
+    <input type="button" class="btn btn-secondary" name="Cancel" (click)="cancel()" value="Cancel">
+</form>
+
+
+

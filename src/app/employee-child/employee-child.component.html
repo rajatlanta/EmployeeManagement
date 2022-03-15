@@ -1,0 +1,51 @@
+<br>
+<div class="container">
+    <div class="row">
+      <div class="col-2"></div>  
+      <div class="col-2">
+          <input type="button" class="btn-success" value="Add Employee" (click)="ShowEmployeeAdd()">
+        </div>
+    </div>
+  </div>
+  
+<div class="container">
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+  <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">EmployeeID</th>
+          <th scope="col">EmployeeName</th>
+          <th scope="col">Department</th>
+          <th scope="col">Salary</th>
+          <th scope="col">PhoneNumber</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+      
+        <tr *ngFor="let employee of employees">
+          <td>{{employee.employeeID}}</td>
+          <td>{{employee.employeeName}}</td>
+          <td>{{employee.department}}</td>
+          <td>{{employee.salary}}</td>
+          <td>{{employee.phoneNumber}}</td>
+          <td><input type="button" name="Edit" value="Edit" (click)="editEmployee(employee.employeeID)" class="btn btn-info btn-sm"> &nbsp;<input type="button" name="Delete" value="Delete" (click)="deleteEmployee(employee.employeeID)" class="btn btn-danger btn-sm"></td>
+        </tr>
+   
+      </tbody>
+  </table>
+  </div>
+  </div>
+  </div>
+<br><br>
+  <div class="container">
+      <div class="row">
+          <div class="col-3"></div>
+          <div class="col-2" *ngIf="employeeDetailsVisible">
+            <app-employee-childdetails   (cancelclick)="cancelDetails()" (notify)="closeDetails($event)" [empID]="employeeID1"></app-employee-childdetails>
+          </div>
+      </div>
+  </div>
+  

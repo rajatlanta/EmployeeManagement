@@ -1,0 +1,73 @@
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-2"></div>  
+    <div class="col-2">
+        <input type="button" class="btn-success" value="Add Department" (click)="ShowDepartmentAdd()">
+      </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-6">
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">DepartmentID</th>
+        <th scope="col">DepartmentName</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+    
+      <tr *ngFor="let department of departments">
+        <td>{{department.departmentId}}</td>
+        <td>{{department.departmentName}}</td>
+        <td><input type="button" name="Edit" value="Edit" (click)="editDepartment(department.departmentId)" class="btn btn-info btn-sm"> &nbsp;<input type="button" name="Delete" value="Delete" (click)="deleteDepartment(department.departmentId)" class="btn btn-danger btn-sm"></td>
+      </tr>
+ 
+    </tbody>
+</table>
+</div>
+<div class="col-2"></div>
+</div>
+</div>
+
+<br><br>
+<!-- <span class="border border-secondary"> -->
+<form #myform="ngForm" (ngSubmit)="saveDepartment(myform)">
+
+<div class="container" *ngIf="departDetailsVisible">
+  <div class="row">
+      <div class="col-2">
+        <!-- <label name="lblDepartmentID" [(ngModel)]="departmentID"></label> -->
+        <input type="text" style="visibility: hidden;"  [(ngModel)]="departmentID" name="lblDepartmentID">
+
+      </div>
+      <div class="col-3 form-group">
+        Department Name: <input type="text" autocomplete="off" required [(ngModel)]="departmentName" name="txtDepartment">
+      </div>
+      <div class="col-7">
+
+      </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-2">
+
+    </div>
+    <div class="col-4">
+      <input type="submit" name="Save" [disabled]="myform.invalid" value="Save" (click)="saveDepartment" class="btn btn-primary"> &nbsp;<input type="button" name="Cancel" value="Cancel" (click)="Cancel()" class="btn btn-secondary">
+    </div>
+    <div class="col-4">
+
+    </div>
+</div>
+
+</div>
+
+</form>
+<!-- </span> -->
+
+

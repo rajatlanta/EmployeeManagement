@@ -1,0 +1,166 @@
+<div class="container">
+  <div class="row">
+    <div class="col-2"></div>  
+    <div class="col-2">
+        <br>
+        <input type="button" class="btn-success" value="Add Employee" placement="bottom" ngbTooltip="Add Employee" (click)="ShowEmployeeAdd()">
+        <!-- <button type="button" class="btn btn-outline-secondary me-2" placement="bottom" ngbTooltip="Tooltip on bottom">
+          Tooltip on bottom
+        </button> -->
+        <!-- <p>
+          <ngb-alert [dismissible]="true">
+            <strong>Warning!</strong> Better check yourself, you're not looking too good.
+          </ngb-alert>
+        </p> -->
+    </div>
+  </div>
+</div>
+<br>
+<div class="container">
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+  <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">EmployeeID</th>
+          <th scope="col">EmployeeName</th>
+          <th scope="col">Department</th>
+          <th scope="col">Salary</th>
+          <th scope="col">PhoneNumber</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+      
+        <tr *ngFor="let employee of employees">
+          <td>{{employee.employeeID}}</td>
+          <td>{{employee.employeeName}}</td>
+          <td>{{employee.department}}</td>
+          <td>{{employee.salary}}</td>
+          <td>{{employee.phoneNumber}}</td>
+          <td><input type="button" name="Edit" value="Edit" (click)="editEmployee(employee.employeeID)" class="btn btn-info btn-sm"> &nbsp;<input type="button" name="Delete" value="Delete" (click)="deleteEmployee(employee.employeeID)" class="btn btn-danger btn-sm"></td>
+        </tr>
+   
+      </tbody>
+  </table>
+</div></div>
+
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-8">
+
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="getAllEmployees()">
+    </ngb-pagination>
+  
+    <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="getAllEmployees()">
+      <option [ngValue]="2">2 items per page</option>
+      <option [ngValue]="4">4 items per page</option>
+      <option [ngValue]="6">6 items per page</option>
+    </select>
+  </div>
+  </div>
+</div>
+
+
+  <div class="col-2"></div>
+  <form #myform="ngForm" (ngSubmit)="saveEmployee(myform)">
+    <div>
+      <!-- <label name="lblEmployeeID" [ngModel]="employeeID"></label> -->
+
+      <input type="text" style="visibility: hidden;"  [(ngModel)]="employeeID" name="lblEmployeeID">
+
+    </div>
+    
+  <div class="container" *ngIf="employeeDetailsVisible">
+    <div class="row">
+        <div class="col-2">
+  
+        </div>
+        <div class="col-3 form-group">
+
+            Employee Name:
+            <input type="text" class="form-control" autocomplete="off"  #nameUser="ngModel" pattern="[a-zA-Z][a-zA-Z]+" required [(ngModel)]="employeeName" name="txtEmployeeName">
+           
+            
+        </div>
+        <div class="col-7">
+              <div *ngIf="nameUser.touched && nameUser.errors?.['required']" class="alert alert-danger">
+                Employee Name is Required
+            </div>
+            <div *ngIf="nameUser.touched && nameUser.errors?.['pattern']" class="alert alert-danger">
+                EmployeeName is not in a valid Format
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-2">
+
+      </div>
+      <div class="col-3 form-group">
+      
+
+        Department: <select #Select [(ngModel)]="deptSelected" (change)="changeDepartment()" #namedept="ngModel" class="form-control" name="ddldepartment">
+                      <option  *ngFor="let department of alldepartments" [value]="department.departmentId">{{ department.departmentName }}</option>
+                     </select>                    
+      </div>
+      <div class="col-7">
+        <div *ngIf="namedept.errors?.['required']" class="alert alert-danger">
+          Department is Required
+      </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-2">
+
+      </div>
+      <div class="col-3 form-group">
+        Salary: <input type="text"  autocomplete="off"  class="form-control" [(ngModel)]="salary" required name="txtSalary">
+      </div>
+      <div class="col-7">
+
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-2">
+
+      </div>
+      <div class="col-3 form-group">
+        Phone Number: <input class="form-control" type="text"  autocomplete="off" [(ngModel)]="phoneNumber" required name="txtPhoneNumber">
+      </div>
+      <div class="col-7">
+
+      </div>
+  </div>
+
+    <br><br>
+    <div class="row">
+      <div class="col-2">
+  
+      </div>
+      <div class="col-3 form-group">
+        <input type="submit" class="form-control" name="Save" value="Save" [disabled]="myform.invalid"  class="btn btn-primary"> &nbsp;<input type="button" name="Cancel" value="Cancel" (click)="Cancel()" class="btn btn-secondary">
+      </div>
+      <div class="col-7">
+  
+      </div>
+    </div>
+  </div>
+  <br><br>
+
+  
+
+
+
+</form>
+
+
+
+
+
+
+  

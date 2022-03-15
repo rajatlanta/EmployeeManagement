@@ -1,0 +1,39 @@
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <h2 style="color: Blue; align-content: center; text-decoration: underline;">Employee Management System</h2>
+    </div>
+    <div class="col-3"></div>
+  </div>
+</div>
+
+<!-- <app-department></app-department>
+<app-employee></app-employee> -->
+<br>
+<div class="container" *ngIf="appSettingsLoaded">
+  <!-- {{ appSettingsLoaded }} -->
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-10">
+        <ul class="nav nav-pills">
+          <!-- <li routerLinkActive="active"><a data-toggle="tab" routerLink="/">Home</a></li> -->
+          <li ><a routerLink="/" style="font-size: 19px;">Employee</a></li>&nbsp;&nbsp;&nbsp;&nbsp; 
+          <li ><a routerLink="/department" style="font-size: 19px;">Department</a></li>&nbsp;&nbsp;&nbsp;&nbsp;
+          <li ><a routerLink="/employeereactive" style="font-size: 19px;">Employee Reactive</a></li>&nbsp;&nbsp;&nbsp;&nbsp;
+          <li ><a routerLink="/employeechild" style="font-size: 19px;">Employee Child</a></li>&nbsp;&nbsp;&nbsp;&nbsp;
+          <li ><a routerLink="/test" style="font-size: 19px;">Test</a></li>&nbsp;&nbsp;&nbsp;&nbsp;
+        </ul>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+</div>
+<br>
+
+<!-- <mat-slider min="1" max="100" step="1" value="50"></mat-slider> -->
+
+<!-- <div *ngIf="false">
+  <app-employee></app-employee>
+</div> -->
